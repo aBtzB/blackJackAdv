@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#12362e">
+  <meta name="description" content="A simple game of blackjack for two people sharing a screen.">
+  <title>blackJack — blackjack for two</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <a class="brand" href="index.html"><span aria-hidden="true">♠</span> blackJack</a>
+    <span class="header-note">A LITTLE CARD CLUB</span>
+    <a href="#rules">How to play ↗</a>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow">PULL UP A CHAIR · TABLE FOR TWO</p><h1>One more <em>hand.</em></h1></div>
+      <p>Two players. One dealer. Same screen.<br>Just cards and a little friendly rivalry.</p>
+    </section>
+
+    <section class="table" aria-label="Blackjack table">
+      <div class="table-top"><span>● LOCAL TWO-PLAYER</span><span id="round">READY WHEN YOU ARE</span></div>
+      <section class="dealer">
+        <div class="hand-title"><h2>The house</h2><span id="dealer-total" class="total">?</span></div>
+        <div id="dealer-cards" class="cards" aria-label="Dealer's hand"></div>
+        <p>The dealer stands on all 17s.</p>
+      </section>
+      <div class="table-lettering" aria-hidden="true"><span>BLACKJACK PAYS 3 : 2</span><small>CLOSE TO 21. NEVER OVER.</small></div>
+
+      <div class="players">
+        <section id="player-0" class="player" aria-label="Player 1">
+          <div class="player-heading"><div><span class="seat-label">SEAT 01</span><h2>Player 1</h2></div><div class="stack"><strong id="chips-0">500</strong><span>CHIPS</span></div></div>
+          <div class="hand-title"><span id="state-0">Waiting for the deal</span><span id="total-0" class="total">—</span></div>
+          <div id="cards-0" class="cards" aria-label="Player 1's hand"></div>
+          <p id="result-0" class="result">A fresh hand, a fresh chance.</p>
+          <div id="bet-controls-0" class="bet-controls"><label for="bet-0">Next bet <small>from your chips</small></label><input id="bet-0" type="number" min="1" max="500" step="1" value="50" inputmode="numeric"></div>
+          <div class="seat-footer"><span><strong id="wins-0">0</strong> WINS</span><span id="wager-0">BET 50</span></div>
+        </section>
+        <section id="player-1" class="player" aria-label="Player 2">
+          <div class="player-heading"><div><span class="seat-label">SEAT 02</span><h2>Player 2</h2></div><div class="stack"><strong id="chips-1">500</strong><span>CHIPS</span></div></div>
+          <div class="hand-title"><span id="state-1">Waiting for the deal</span><span id="total-1" class="total">—</span></div>
+          <div id="cards-1" class="cards" aria-label="Player 2's hand"></div>
+          <p id="result-1" class="result">A fresh hand, a fresh chance.</p>
+          <div id="bet-controls-1" class="bet-controls"><label for="bet-1">Next bet <small>from your chips</small></label><input id="bet-1" type="number" min="1" max="500" step="1" value="50" inputmode="numeric"></div>
+          <div class="seat-footer"><span><strong id="wins-1">0</strong> WINS</span><span id="wager-1">BET 50</span></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Game controls">
+      <div><p id="message" role="status" aria-live="polite">Make yourselves comfortable.</p><p id="hint">Press Deal to start your first round.</p></div>
+      <div class="buttons"><button id="deal" class="primary">Deal the cards ↗</button><button id="hit" class="primary" hidden>Hit</button><button id="stand" hidden>Stand</button></div>
+    </section>
+    <p id="error" role="alert" hidden></p>
+
+    <section class="bottom">
+      <details id="rules">
+        <summary>New to blackjack? Here are the rules.</summary>
+        <ul>
+          <li>Both players start with 500 pretend chips and take turns against the dealer. Bet any whole number from 1 up to your available chips. Player 1 goes first.</li>
+          <li><strong>Hit</strong> takes another card. <strong>Stand</strong> ends your turn.</li>
+          <li>Get closer to 21 than the dealer without going over. More than 21 is a bust.</li>
+          <li>Number cards use their number. J, Q and K are 10. An ace is 11 or 1, whichever helps your hand.</li>
+          <li>An ace and a ten-value card in your first two cards is blackjack. It beats a 21 made with more cards.</li>
+          <li>The dealer reveals its hidden card after both turns, then draws until reaching at least 17. It stands on soft 17 too.</li>
+          <li>The dealer checks for blackjack immediately. Blackjack or a total of 21 automatically finishes your turn.</li>
+          <li>Your bet comes out of your chips when the cards are dealt. A regular win returns your stake plus the same amount in profit. A tie (push) returns your stake. A loss keeps it deducted.</li>
+          <li>Blackjack returns your stake plus 1.5 times your bet in profit, rounded down to a whole chip for odd bets. A bet of 5 earns 7 chips in profit.</li>
+          <li>The result shows your gain or loss for that hand. For a bet of 50, a regular win shows +50 and blackjack shows +75. These are pretend amounts.</li>
+          <li>Every round uses a freshly shuffled 52-card deck. Winning adds one to your win count. Both players can win the same round.</li>
+          <li>If both players bust or have blackjack, extra dealer cards cannot change their results, so the dealer just reveals its hand.</li>
+        </ul>
+        <p>If a player has 0 chips after a round, they lose and the table ends. If both run out together, both lose. Start a new table to play again. Refreshing also resets chips and wins. This is a local game for two people sharing one screen, using no real money.</p>
+      </details>
+      <button id="reset" class="reset">New table ↺</button>
+    </section>
+    <footer><span>blackJack <span aria-hidden="true">♠</span> MADE FOR A LITTLE DOWNTIME.</span><span>Practice bets · No real money</span></footer>
+  </main>
+  <noscript><p>Enable JavaScript to play.</p></noscript>
+</body>
+</html>
